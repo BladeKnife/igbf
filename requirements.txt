@@ -1,0 +1,7 @@
+pip install mechanize
+pip install requests
+pip install bs4
+pip install futures
+pip install ThreadPool
+pip install tqdm
+pip install prompt_toolkit
