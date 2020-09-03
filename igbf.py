@@ -180,7 +180,7 @@ if __name__=="__main__":
      while True:
           clear()
           baner()
-          bc=input('\033[00m\033[96m1).\033[00mCrack Wordlist\n\033[96m2).Crack Not Wordlist\n\033[00m>> \033[96m')
+          bc=input('\033[00m\033[96m1).\033[00mCrack Wordlist\n\033[96m2).\033[00mCrack Not Wordlist\n\033[00m>> \033[96m')
           if bc == '1':
              clear()
              baner()
