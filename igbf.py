@@ -167,7 +167,6 @@ def gpkwd():
                                     print('\033[00m[|033[92m+\033[00m]'+us+'|'+passw)
                                     with open('vuln.txt','a') as x:
                                          x.write(us + '|' + passw + '\n')
-                                         sys.exit('\033[00mPassword \033[92mFound\033[00m')
                                                          
                            else:
                                    print('\033[00m[\033[91mx\033[00m]'+us+ '|' +passw)
