@@ -44,7 +44,6 @@ ua={
 'user-agent': '{acak}',
 'x-csrftoken': csrftoken,
 'x-requested-with': 'XMLHttpRequest'}
-js= json.loads(dat)
 vuln=[]
 result=0
 def pkwd():
@@ -76,6 +75,7 @@ def pkwd():
        except requests.exceptions.ConnectionError:
            sys.exit('\033[91mConnection Error\033[00m')
        pwd1=pwd.strip().split('\n')
+       js= json.loads(dat)
        with ThreadPoolExecutor(max_workers=10) as ex:
             ex.submit(True)
             for x in js['users']:
@@ -139,6 +139,7 @@ def gpkwd():
            sys.exit('\033[91mConnection Error\033[00m')  
     with ThreadPoolExecutor(max_workers=10) as ex:
            ex.submit(True)
+           js= json.loads(dat)
            for x in js['users']:
                us= x['user']['username']
                name=x['user']['full_name']
@@ -179,7 +180,7 @@ if __name__=="__main__":
      while True:
           clear()
           baner()
-          bc=input('\033[096m1).\033[00mCrack Wordlist\n\033[96m2).Crack Not Wordlist\n\033[00m>> \033[96m')
+          bc=input('\033[96m1).\033[00mCrack Wordlist\n\033[96m2).Crack Not Wordlist\n\033[00m>> \033[96m')
           if bc == '1':
              clear()
              baner()
